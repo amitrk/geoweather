@@ -11,14 +11,14 @@ def fetch_api_key():
 
 
 @click.command()
-@click.option('--address', help='Address String')
-def process_input(address):
+@click.option('--location', help='Address String or Zipcode')
+def process_input(location):
     """ Takes and address string and displays a weather profile """
 
     # geolocate address from supplied address string
     geolocator = Nominatim()
     try:
-        target_location = geolocator.geocode(address, timeout=5)
+        target_location = geolocator.geocode(location, timeout=5)
         print "Target Location : " + target_location.address
         print "Co-ordinates ({0}, {1})".format(target_location.latitude, target_location.longitude)
     except GeocoderTimedOut:
